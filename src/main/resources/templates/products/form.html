@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${editMode} ? 'Edit Product — GlowLog' : 'New Product — GlowLog'">Form — GlowLog</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #fef4ec; --surface: #ffffff; --surface-2: #faeadd;
+            --border: #f3d6c1; --accent: #f48fb1; --accent-hover: #e57aa0;
+            --accent-soft: #f9c3d3; --sage: #a5b88f; --ink: #4a3a3a;
+            --text-muted: #968383; --danger: #d96363; --gold: #d4a574;
+        }
+        body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+        a { color: var(--accent); text-decoration: none; }
+        .navbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(244,143,177,0.05); }
+        .navbar-brand { display: flex; align-items: center; gap: 0.7rem; font-size: 1.4rem; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; }
+        .navbar-brand .accent { color: var(--accent); }
+        .brand-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(244,143,177,0.3); }
+        .brand-icon svg { width: 22px; height: 22px; fill: var(--surface); }
+
+        .btn { display: inline-flex; align-items: center; padding: 0.65rem 1.25rem; border-radius: 10px; border: 1px solid transparent; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+        .btn-primary { background: var(--accent); color: var(--surface); }
+        .btn-primary:hover { background: var(--accent-hover); color: var(--surface); }
+        .btn-outline { background: transparent; color: var(--ink); border-color: var(--border); }
+        .btn-outline:hover { background: var(--surface-2); color: var(--accent); border-color: var(--accent); }
+
+        .main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 500; }
+        .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.25rem; box-shadow: 0 8px 30px rgba(244,143,177,0.1); }
+        .form-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 1.75rem; letter-spacing: -0.5px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+        .fg.full { grid-column: 1 / -1; }
+        .fg label { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+        .required::after { content: ' *'; color: var(--accent); }
+        .form-control, .form-select { background: var(--surface-2); border: 1.5px solid var(--border); color: var(--ink); padding: 0.65rem 0.9rem; border-radius: 10px; font-size: 0.9rem; appearance: none; width: 100%; transition: all 0.2s; }
+        .form-control:focus, .form-select:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(244,143,177,0.1); }
+        .form-control::placeholder { color: #c8a8a8; }
+        textarea.form-control { resize: vertical; min-height: 100px; font-family: inherit; }
+        .field-error { color: var(--danger); font-size: 0.78rem; }
+        .section-label { grid-column: 1 / -1; font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+        .checkbox-group { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+        .checkbox-wrap { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.15s; }
+        .checkbox-wrap:hover { border-color: var(--accent); }
+        .checkbox-wrap input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+        .checkbox-label { display: flex; flex-direction: column; cursor: pointer; flex: 1; }
+        .checkbox-title { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+
+        .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a class="navbar-brand" th:href="@{/products}">
+        <span class="brand-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.66 1.34 3 3 3h1.5c.83 0 1.5.67 1.5 1.5v1.5c0 1.66 1.34 3 3 3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></span>
+        <span><span class="accent">Glow</span>Log</span>
+    </a>
+</nav>
+
+<div class="main">
+    <div class="breadcrumb">
+        <a th:href="@{/products}">My Shelf</a> /
+        <span th:text="${editMode} ? 'Edit product' : 'New product'"></span>
+    </div>
+
+    <div class="form-card">
+        <h2 class="form-title" th:text="${editMode} ? 'Edit Product' : 'Add a New Product'"></h2>
+
+        <form th:action="${editMode} ? @{/products/edit/{id}(id=${product.id})} : @{/products/new}"
+              method="post" th:object="${product}">
+
+            <div class="form-grid">
+
+                <div class="section-label">Product Identity</div>
+
+                <div class="fg">
+                    <label class="required">Brand</label>
+                    <input class="form-control" type="text" th:field="*{brand}" placeholder="e.g. The Ordinary">
+                    <span class="field-error" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+                </div>
+
+                <div class="fg">
+                    <label class="required">Product Name</label>
+                    <input class="form-control" type="text" th:field="*{name}" placeholder="e.g. Niacinamide 10% + Zinc 1%">
+                    <span class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+
+                <div class="fg">
+                    <label class="required">Category</label>
+                    <select class="form-select" th:field="*{category}">
+                        <option value="">Select...</option>
+                        <option th:each="c : ${categories}" th:value="${c}"
+                                th:text="${#strings.replace(c.name(),'_',' ')}"></option>
+                    </select>
+                    <span class="field-error" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+                </div>
+
+                <div class="fg">
+                    <label class="required">Routine Slot</label>
+                    <select class="form-select" th:field="*{routineSlot}">
+                        <option value="">Select...</option>
+                        <option th:each="r : ${routineSlots}" th:value="${r}"
+                                th:text="${#strings.replace(r.name(),'_',' ')}"></option>
+                    </select>
+                    <span class="field-error" th:if="${#fields.hasErrors('routineSlot')}" th:errors="*{routineSlot}"></span>
+                </div>
+
+                <div class="fg">
+                    <label class="required">Skin Type Target</label>
+                    <select class="form-select" th:field="*{skinTypeTarget}">
+                        <option value="">Select...</option>
+                        <option th:each="t : ${skinTypes}" th:value="${t}"
+                                th:text="${#strings.replace(t.name(),'_',' ')}"></option>
+                    </select>
+                    <span class="field-error" th:if="${#fields.hasErrors('skinTypeTarget')}" th:errors="*{skinTypeTarget}"></span>
+                </div>
+
+                <div class="fg">
+                    <label class="required">Status</label>
+                    <select class="form-select" th:field="*{status}">
+                        <option value="">Select...</option>
+                        <option th:each="s : ${statuses}" th:value="${s}"
+                                th:text="${#strings.replace(s.name(),'_',' ')}"></option>
+                    </select>
+                    <span class="field-error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+                </div>
+
+                <div class="fg">
+                    <label>Primary Skin Concern</label>
+                    <select class="form-select" th:field="*{primaryConcern}">
+                        <option value="">Select...</option>
+                        <option th:each="c : ${concerns}" th:value="${c}"
+                                th:text="${#strings.replace(c.name(),'_',' ')}"></option>
+                    </select>
+                </div>
+
+                <div class="fg">
+                    <label>Rating (1-5 stars)</label>
+                    <input class="form-control" type="number" th:field="*{rating}" min="1" max="5" placeholder="1-5">
+                    <span class="field-error" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+                </div>
+
+                <div class="fg full">
+                    <label>Key Ingredients</label>
+                    <input class="form-control" type="text" th:field="*{keyIngredients}" placeholder="e.g. Niacinamide 10%, Zinc PCA, Hyaluronic Acid">
+                </div>
+
+                <div class="section-label">Bottle &amp; Price</div>
+
+                <div class="fg">
+                    <label>Volume (ml)</label>
+                    <input class="form-control" type="number" th:field="*{volumeMl}" min="1" max="2000" placeholder="e.g. 30">
+                    <span class="field-error" th:if="${#fields.hasErrors('volumeMl')}" th:errors="*{volumeMl}"></span>
+                </div>
+
+                <div class="fg">
+                    <label>Price (EUR)</label>
+                    <input class="form-control" type="number" step="0.01" th:field="*{priceEur}" min="0" placeholder="e.g. 7.20">
+                    <span class="field-error" th:if="${#fields.hasErrors('priceEur')}" th:errors="*{priceEur}"></span>
+                </div>
+
+                <div class="fg">
+                    <label>PAO (Period After Opening)</label>
+                    <input class="form-control" type="text" th:field="*{pao}" placeholder="e.g. 12M, 6M, 24M">
+                </div>
+
+                <div class="fg">
+                    <label>Lifetime Empty Count</label>
+                    <input class="form-control" type="number" th:field="*{emptyCount}" min="1" max="50" placeholder="e.g. 3">
+                </div>
+
+                <div class="section-label">Quality Scores (1-10)</div>
+
+                <div class="fg">
+                    <label>✨ Effectiveness</label>
+                    <input class="form-control" type="number" th:field="*{effectivenessScore}" min="1" max="10" placeholder="1-10">
+                </div>
+
+                <div class="fg">
+                    <label>💧 Texture / Feel</label>
+                    <input class="form-control" type="number" th:field="*{textureScore}" min="1" max="10" placeholder="1-10">
+                </div>
+
+                <div class="fg">
+                    <label>🌸 Scent</label>
+                    <input class="form-control" type="number" th:field="*{scentScore}" min="1" max="10" placeholder="1-10">
+                </div>
+
+                <div class="fg">
+                    <label>💰 Value</label>
+                    <input class="form-control" type="number" th:field="*{valueScore}" min="1" max="10" placeholder="1-10">
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-wrap" for="holyGrail">
+                        <input id="holyGrail" type="checkbox" th:field="*{holyGrail}">
+                        <span class="checkbox-label"><span class="checkbox-title">♛ Holy Grail</span></span>
+                    </label>
+                    <label class="checkbox-wrap" for="wouldRepurchase">
+                        <input id="wouldRepurchase" type="checkbox" th:field="*{wouldRepurchase}">
+                        <span class="checkbox-label"><span class="checkbox-title">♻ Would Repurchase</span></span>
+                    </label>
+                    <label class="checkbox-wrap" for="crueltyFree">
+                        <input id="crueltyFree" type="checkbox" th:field="*{crueltyFree}">
+                        <span class="checkbox-label"><span class="checkbox-title">🐰 Cruelty Free</span></span>
+                    </label>
+                    <label class="checkbox-wrap" for="fragranceFree">
+                        <input id="fragranceFree" type="checkbox" th:field="*{fragranceFree}">
+                        <span class="checkbox-label"><span class="checkbox-title">🚫 Fragrance Free</span></span>
+                    </label>
+                </div>
+
+                <div class="section-label">Timeline</div>
+
+                <div class="fg">
+                    <label>Purchase Date</label>
+                    <input class="form-control" type="date" th:field="*{purchaseDate}">
+                </div>
+
+                <div class="fg">
+                    <label>Opened Date</label>
+                    <input class="form-control" type="date" th:field="*{openedDate}">
+                </div>
+
+                <div class="fg">
+                    <label>Expiration Date</label>
+                    <input class="form-control" type="date" th:field="*{expirationDate}">
+                </div>
+
+                <div class="fg">
+                    <label>Finished Date</label>
+                    <input class="form-control" type="date" th:field="*{finishedDate}">
+                </div>
+
+                <div class="section-label">Skincare Journal</div>
+
+                <div class="fg full">
+                    <label>Mood / Vibe Tags</label>
+                    <input class="form-control" type="text" th:field="*{moodTags}" placeholder="e.g. Cooling, dewy, slime-y but in a good way">
+                    <span class="field-error" th:if="${#fields.hasErrors('moodTags')}" th:errors="*{moodTags}"></span>
+                </div>
+
+                <div class="fg full">
+                    <label>Reaction Notes</label>
+                    <textarea class="form-control" th:field="*{reactionNotes}" placeholder="Any breakouts? Tingling? Allergic reactions?" style="min-height: 70px;"></textarea>
+                    <span class="field-error" th:if="${#fields.hasErrors('reactionNotes')}" th:errors="*{reactionNotes}"></span>
+                </div>
+
+                <div class="fg full">
+                    <label>My Review</label>
+                    <textarea class="form-control" th:field="*{review}" placeholder="Did it work? Worth the hype?"></textarea>
+                </div>
+
+                <div class="fg full">
+                    <label>Personal Notes</label>
+                    <textarea class="form-control" th:field="*{personalNotes}" placeholder="Pairing tips, storage notes, things to remember..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <a th:href="@{/products}" class="btn btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-primary"
+                        th:text="${editMode} ? 'Save changes' : 'Add to Shelf'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

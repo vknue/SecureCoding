@@ -1,5 +1,8 @@
 package hr.algebra.glowlog.controller.mvc;
 
+import org.springframework.web.bind.annotation.*;
+
+import hr.algebra.glowlog.constants.Constants;
 import hr.algebra.glowlog.dto.ProductDto;
 import hr.algebra.glowlog.entity.User;
 import hr.algebra.glowlog.enums.ProductCategory;
@@ -14,9 +17,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -56,34 +62,34 @@ public class ProductMvcController {
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
         try {
-            model.addAttribute("product", productService.findById(id));
+            model.addAttribute(Constants.PRODUCT, productService.findById(id));
             return "products/detail";
         } catch (NoSuchElementException e) {
-            return "redirect:/products";
+            return Constants.REDIRECT_TO_PRODUCTS;
         }
     }
 
     @GetMapping("/new")
     @PreAuthorize("hasRole('ADMIN')")
     public String newForm(Model model) {
-        model.addAttribute("product", new ProductDto(
-            null, "", "", null, null, null, null, null,
-            "", null, null, "12M",
-            null, null, null, null,
-            null, null, null, null, null, null,
+        model.addAttribute(Constants.PRODUCT, new ProductDto(
+            1L, "", "", ProductCategory.ESSENCE, RoutineSlot.AS_NEEDED, SkinType.ALL_TYPES, ProductStatus.ACTIVE, SkinConcern.ACNE,
+            "", 50, new BigDecimal(2), "12M",
+            LocalDate.now(), LocalDate.now(), LocalDate.now(), LocalDate.now(),
+            3, 3, 3, 3, 3, 3,
             false, false, false, false,
             "", "", "", "",
-            null, null, null
+            "", LocalDateTime.now(), LocalDateTime.now()
         ));
         addEnumsToModel(model);
-        model.addAttribute("editMode", false);
-        return "products/form";
+        model.addAttribute(Constants.EDIT_MODE, false);
+        return Constants.PRODUCTS_FORM_ENDPOINT;
     }
 
     @PostMapping("/new")
     @PreAuthorize("hasRole('ADMIN')")
     public String create(
-        @Valid @ModelAttribute("product") ProductDto dto,
+        @Valid @ModelAttribute(Constants.PRODUCT) ProductDto dto,
         BindingResult result,
         @AuthenticationPrincipal User currentUser,
         Model model,
@@ -91,12 +97,12 @@ public class ProductMvcController {
     ) {
         if (result.hasErrors()) {
             addEnumsToModel(model);
-            model.addAttribute("editMode", false);
-            return "products/form";
+            model.addAttribute(Constants.EDIT_MODE, false);
+            return Constants.PRODUCTS_FORM_ENDPOINT;
         }
         productService.create(dto, currentUser);
-        redirectAttributes.addFlashAttribute("successMessage", "Product added to your shelf.");
-        return "redirect:/products";
+        redirectAttributes.addFlashAttribute(Constants.SUCCESS_MESSAGE, "Product added to your shelf.");
+        return Constants.REDIRECT_TO_PRODUCTS;
     }
 
     @GetMapping("/edit/{id}")
@@ -105,10 +111,10 @@ public class ProductMvcController {
         try {
             model.addAttribute("product", productService.findById(id));
             addEnumsToModel(model);
-            model.addAttribute("editMode", true);
-            return "products/form";
-        } catch (NoSuchElementException e) {
-            return "redirect:/products";
+            model.addAttribute(Constants.EDIT_MODE, true);
+            return Constants.PRODUCTS_FORM_ENDPOINT;
+        } catch (NoSuchElementException _){
+            return Constants.REDIRECT_TO_PRODUCTS;
         }
     }
 
@@ -123,20 +129,20 @@ public class ProductMvcController {
     ) {
         if (result.hasErrors()) {
             addEnumsToModel(model);
-            model.addAttribute("editMode", true);
-            return "products/form";
+            model.addAttribute(Constants.EDIT_MODE, true);
+            return Constants.PRODUCTS_FORM_ENDPOINT;
         }
         productService.update(id, dto);
-        redirectAttributes.addFlashAttribute("successMessage", "Product updated.");
-        return "redirect:/products";
+        redirectAttributes.addFlashAttribute(Constants.SUCCESS_MESSAGE, "Product updated.");
+        return Constants.REDIRECT_TO_PRODUCTS;
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         productService.delete(id);
-        redirectAttributes.addFlashAttribute("successMessage", "Product removed.");
-        return "redirect:/products";
+        redirectAttributes.addFlashAttribute(Constants.SUCCESS_MESSAGE, "Product removed.");
+        return Constants.REDIRECT_TO_PRODUCTS;
     }
 
     private void addEnumsToModel(Model model) {
@@ -146,4 +152,6 @@ public class ProductMvcController {
         model.addAttribute("routineSlots", RoutineSlot.values());
         model.addAttribute("concerns", SkinConcern.values());
     }
+
+
 }

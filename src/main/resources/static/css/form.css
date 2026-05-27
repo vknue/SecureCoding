@@ -1,0 +1,45 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #fef4ec; --surface: #ffffff; --surface-2: #faeadd;
+            --border: #f3d6c1; --accent: #f48fb1; --accent-hover: #e57aa0;
+            --accent-soft: #f9c3d3; --sage: #a5b88f; --ink: #4a3a3a;
+            --text-muted: #968383; --danger: #d96363; --gold: #d4a574;
+        }
+        body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+        a { color: var(--accent); text-decoration: none; }
+        .navbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; height: 64px; box-shadow: 0 2px 8px rgba(244,143,177,0.05); }
+        .navbar-brand { display: flex; align-items: center; gap: 0.7rem; font-size: 1.4rem; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; }
+        .navbar-brand .accent { color: var(--accent); }
+        .brand-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(244,143,177,0.3); }
+        .brand-icon svg { width: 22px; height: 22px; fill: var(--surface); }
+
+        .btn { display: inline-flex; align-items: center; padding: 0.65rem 1.25rem; border-radius: 10px; border: 1px solid transparent; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+        .btn-primary { background: var(--accent); color: var(--surface); }
+        .btn-primary:hover { background: var(--accent-hover); color: var(--surface); }
+        .btn-outline { background: transparent; color: var(--ink); border-color: var(--border); }
+        .btn-outline:hover { background: var(--surface-2); color: var(--accent); border-color: var(--accent); }
+
+        .main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 500; }
+        .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.25rem; box-shadow: 0 8px 30px rgba(244,143,177,0.1); }
+        .form-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 1.75rem; letter-spacing: -0.5px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+        .fg.full { grid-column: 1 / -1; }
+        .fg label { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+        .required::after { content: ' *'; color: var(--accent); }
+        .form-control, .form-select { background: var(--surface-2); border: 1.5px solid var(--border); color: var(--ink); padding: 0.65rem 0.9rem; border-radius: 10px; font-size: 0.9rem; appearance: none; width: 100%; transition: all 0.2s; }
+        .form-control:focus, .form-select:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(244,143,177,0.1); }
+        .form-control::placeholder { color: #c8a8a8; }
+        textarea.form-control { resize: vertical; min-height: 100px; font-family: inherit; }
+        .field-error { color: var(--danger); font-size: 0.78rem; }
+        .section-label { grid-column: 1 / -1; font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+        .checkbox-group { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+        .checkbox-wrap { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.15s; }
+        .checkbox-wrap:hover { border-color: var(--accent); }
+        .checkbox-wrap input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+        .checkbox-label { display: flex; flex-direction: column; cursor: pointer; flex: 1; }
+        .checkbox-title { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+
+        .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }

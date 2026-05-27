@@ -1,12 +1,13 @@
 package hr.algebra.glowlog.entity;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 
 import hr.algebra.glowlog.enums.ProductCategory;
 import hr.algebra.glowlog.enums.ProductStatus;
 import hr.algebra.glowlog.enums.RoutineSlot;
 import hr.algebra.glowlog.enums.SkinConcern;
 import hr.algebra.glowlog.enums.SkinType;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

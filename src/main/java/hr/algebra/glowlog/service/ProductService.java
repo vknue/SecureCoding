@@ -10,6 +10,7 @@ import hr.algebra.glowlog.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -43,6 +44,8 @@ public class ProductService {
             .toList();
     }
 
+
+
     @Transactional
     public ProductDto create(ProductDto dto, User creator) {
         Product product = new Product();
@@ -66,4 +69,5 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
+
 }

@@ -4,47 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In — GlowLog</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #fef4ec; --surface: #ffffff; --surface-2: #faeadd;
-            --border: #f3d6c1; --accent: #f48fb1; --accent-hover: #e57aa0;
-            --accent-soft: #f9c3d3; --sage: #a5b88f; --sage-soft: #c7d6b2;
-            --gold: #d4a574; --gold-soft: #f0d8b8;
-            --ink: #4a3a3a; --text-muted: #968383;
-            --success: #7faa61; --danger: #d96363;
-        }
-        body { background: linear-gradient(135deg, #fef4ec 0%, #fce4ec 50%, #faeadd 100%); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-
-        .auth-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.75rem 2rem; width: 100%; max-width: 400px; box-shadow: 0 24px 60px rgba(244,143,177,0.15), 0 8px 20px rgba(165,184,143,0.08); position: relative; }
-        .auth-box::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-soft) 0%, var(--sage-soft) 100%); border-radius: 22px; z-index: -1; opacity: 0.4; }
-
-        .brand-section { text-align: center; margin-bottom: 2rem; }
-        .brand-icon { width: 72px; height: 72px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(244,143,177,0.35); position: relative; }
-        .brand-icon::before { content: ''; position: absolute; inset: -6px; background: radial-gradient(circle, rgba(244,143,177,0.3) 0%, transparent 70%); border-radius: 50%; z-index: -1; }
-        .brand-icon svg { width: 38px; height: 38px; fill: var(--surface); }
-
-        .brand { font-size: 2rem; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 0.25rem; }
-        .brand-accent { color: var(--accent); }
-        .subtitle { color: var(--text-muted); font-size: 0.95rem; }
-        .ornament { text-align: center; color: var(--accent-soft); margin: 0.5rem 0 0; font-size: 1rem; }
-
-        .form-group { margin-bottom: 1.1rem; }
-        .form-label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.4rem; }
-        .form-control { width: 100%; background: var(--surface-2); border: 1.5px solid var(--border); color: var(--ink); padding: 0.75rem 1rem; border-radius: 12px; font-size: 0.95rem; transition: all 0.2s; }
-        .form-control:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(244,143,177,0.15); }
-
-        .btn-submit { display: block; width: 100%; padding: 0.9rem; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); color: var(--surface); border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 800; cursor: pointer; margin-top: 1.5rem; letter-spacing: 1.2px; text-transform: uppercase; transition: all 0.2s; box-shadow: 0 6px 18px rgba(244,143,177,0.35); }
-        .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(244,143,177,0.45); }
-
-        .alert { padding: 0.75rem 1rem; border-radius: 10px; margin-bottom: 1.25rem; font-size: 0.875rem; }
-        .alert-danger  { background: rgba(217,99,99,0.08); border: 1px solid rgba(217,99,99,0.25); color: var(--danger); }
-        .alert-success { background: rgba(127,170,97,0.08); border: 1px solid rgba(127,170,97,0.25); color: var(--success); }
-
-        .footer-link { text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-muted); }
-        .footer-link a { color: var(--accent); text-decoration: none; font-weight: 700; }
-        .footer-link a:hover { text-decoration: underline; }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
 <body>
 <div class="auth-box">

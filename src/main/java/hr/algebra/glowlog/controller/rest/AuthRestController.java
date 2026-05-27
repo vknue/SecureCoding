@@ -1,5 +1,9 @@
 package hr.algebra.glowlog.controller.rest;
 
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.web.bind.annotation.*;
 import hr.algebra.glowlog.dto.Dto;
 import hr.algebra.glowlog.entity.RefreshToken;
 import hr.algebra.glowlog.entity.User;
@@ -14,7 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,6 +29,9 @@ public class AuthRestController {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final AuthService authService;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public AuthRestController(
         AuthenticationManager authenticationManager,
@@ -37,6 +44,8 @@ public class AuthRestController {
         this.refreshTokenService = refreshTokenService;
         this.authService = authService;
     }
+
+
 
     @PostMapping("/login")
     @Operation(summary = "Authenticate and receive JWT tokens")
@@ -59,7 +68,7 @@ public class AuthRestController {
 
     @PostMapping("/refresh")
     @Operation(summary = "Obtain a new access token using a refresh token")
-    public ResponseEntity<?> refresh(@Valid @RequestBody Dto.RefreshTokenRequest request) {
+    public ResponseEntity<Dto.TokenResponse> refresh(@Valid @RequestBody Dto.RefreshTokenRequest request) {
         return refreshTokenService.findByToken(request.refreshToken())
             .filter(refreshTokenService::isValid)
             .map(rt -> {

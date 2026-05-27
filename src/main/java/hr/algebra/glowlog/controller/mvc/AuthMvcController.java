@@ -1,13 +1,18 @@
 package hr.algebra.glowlog.controller.mvc;
 
+import hr.algebra.glowlog.dto.ProductDto;
+import org.springframework.web.bind.annotation.*;
+
+import hr.algebra.glowlog.constants.Constants;
 import hr.algebra.glowlog.dto.Dto;
 import hr.algebra.glowlog.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/auth")
@@ -27,8 +32,11 @@ public class AuthMvcController {
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("registerRequest", new Dto.RegisterRequest("", "", ""));
-        return "auth/register";
+        return Constants.REGISTER_ENDPOINT;
+
     }
+
+
 
     @PostMapping("/register")
     public String register(
@@ -38,7 +46,7 @@ public class AuthMvcController {
         Model model
     ) {
         if (result.hasErrors()) {
-            return "auth/register";
+            return Constants.REGISTER_ENDPOINT;
         }
         try {
             authService.register(request);
@@ -46,7 +54,7 @@ public class AuthMvcController {
             return "redirect:/auth/login";
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "auth/register";
+            return Constants.REGISTER_ENDPOINT;
         }
     }
 }

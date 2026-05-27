@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6c2de250-8570-4bd6-88a8-bc362b6587c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/constants/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/rest/SerializationRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/entity/ProductRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/security/UrlValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/SerializationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/register.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/config/DataInitializerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/controller/rest/AccessControlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/dto/ProductDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/security/JwtAuthFilterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/security/JwtServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/security/UrlValidatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/security/UserDetailsServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/AuthIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/AuthServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/ProductIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/ProductServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/RefreshTokenServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/SerializationIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/SerializationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/config/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/mvc/AuthMvcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/mvc/AuthMvcController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/mvc/ProductMvcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/mvc/ProductMvcController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/rest/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/rest/AuthRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/rest/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/controller/rest/ProductRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/dto/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/security/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/security/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/products/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/products/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/products/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/products/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/products/list.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3DrKL7VThNKEwrMsW4apqHbJ0QL" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AccessControlTest.executor": "Run",
+    "JUnit.AuthIntegrationTest.executor": "Run",
+    "JUnit.AuthIntegrationTest.testAdminCanAccessAdminEndpoint.executor": "Run",
+    "JUnit.AuthIntegrationTest.testExpiredTokenReturns401.executor": "Run",
+    "JUnit.AuthIntegrationTest.testRegisterSuccess.executor": "Run",
+    "JUnit.AuthServiceTest.executor": "Run",
+    "JUnit.DataInitializerTest.executor": "Run",
+    "JUnit.JwtAuthFilterTest.executor": "Run",
+    "JUnit.JwtServiceTest.executor": "Run",
+    "JUnit.JwtServiceTest.testIsInvalidWithExpiredToken.executor": "Run",
+    "JUnit.ProductDtoTest.executor": "Run",
+    "JUnit.ProductIntegrationTest (1).executor": "Run",
+    "JUnit.ProductIntegrationTest.executor": "Run",
+    "JUnit.ProductIntegrationTest.testCreateProductAsAdmin.executor": "Run",
+    "JUnit.ProductServiceTest.executor": "Run",
+    "JUnit.RefreshTokenServiceTest.executor": "Run",
+    "JUnit.SerializationIntegrationTest.executor": "Run",
+    "JUnit.SerializationIntegrationTest.testCreateBadFile.executor": "Run",
+    "JUnit.SerializationIntegrationTest.testSaveUserSuccess.executor": "Run",
+    "JUnit.SerializationServiceTest.executor": "Run",
+    "JUnit.SerializationServiceTest.testDeserializeUnauthorizedClass.executor": "Run",
+    "JUnit.SerializationServiceTest.testDeserializeUnauthorizedProduct.executor": "Run",
+    "JUnit.SerializationServiceTest.testDeserializeUnauthorizedSerializableClass.executor": "Run",
+    "JUnit.UrlValidatorTest.executor": "Run",
+    "JUnit.UserDetailsServiceImplTest.executor": "Run",
+    "JavaScript Debug.index.html (1).executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
+    "Maven.GlowlogApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/valon/Documents/Algebra/Road to mag.ing.comp/Semestar 8/Pisanje sigurnog koda/Secure Coding Project/glowlog",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\valon\Documents\Algebra\Road to mag.ing.comp\Semestar 8\Pisanje sigurnog koda\Secure Coding Project\glowlog\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+    <configuration name="DataInitializerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="glowlog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hr.algebra.glowlog.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hr.algebra.glowlog.config" />
+      <option name="MAIN_CLASS_NAME" value="hr.algebra.glowlog.config.DataInitializerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductDtoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="glowlog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hr.algebra.glowlog.dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hr.algebra.glowlog.dto" />
+      <option name="MAIN_CLASS_NAME" value="hr.algebra.glowlog.dto.ProductDtoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductIntegrationTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="glowlog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hr.algebra.glowlog.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hr.algebra.glowlog.service" />
+      <option name="MAIN_CLASS_NAME" value="hr.algebra.glowlog.service.ProductIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/glowlog/target/site/jacoco/hr.algebra.glowlog/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/glowlog/target/site/jacoco/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="GlowlogApplication" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map>
+                <entry key="ADMIN_PASSWORD" value="admin123" />
+                <entry key="USER_PASSWORD" value="user123" />
+              </map>
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="skipTests" value="false" />
+            <option name="vmOptions" value="" />
+          </MavenRunnerSettings>
+        </option>
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="spring-boot:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="GlowlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="glowlog" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hr.algebra.glowlog.GlowlogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JUnit.DataInitializerTest" />
+        <item itemvalue="JUnit.ProductDtoTest" />
+        <item itemvalue="JUnit.ProductIntegrationTest (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c2de250-8570-4bd6-88a8-bc362b6587c7" name="Changes" comment="" />
+      <created>1779034694567</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779034694567</updated>
+      <workItem from="1779465919095" duration="30355000" />
+      <workItem from="1779891864433" duration="17724000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/hr/algebra/glowlog/service/ProductService.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/hr/algebra/glowlog/service/AuthServiceTest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

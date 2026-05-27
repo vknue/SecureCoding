@@ -1,6 +1,7 @@
 package hr.algebra.glowlog.config;
 
 import hr.algebra.glowlog.entity.Product;
+import hr.algebra.glowlog.entity.ProductRequest;
 import hr.algebra.glowlog.entity.User;
 import hr.algebra.glowlog.enums.ProductCategory;
 import hr.algebra.glowlog.enums.ProductStatus;
@@ -12,6 +13,7 @@ import hr.algebra.glowlog.repository.ProductRepository;
 import hr.algebra.glowlog.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Component
+@Profile("!test")
 public class DataInitializer implements ApplicationRunner {
 
     private final UserRepository userRepository;
@@ -42,18 +45,18 @@ public class DataInitializer implements ApplicationRunner {
         User admin = new User();
         admin.setUsername("admin");
         admin.setEmail("admin@glowlog.hr");
-        admin.setPassword(passwordEncoder.encode("admin123"));
+        admin.setPassword(passwordEncoder.encode(System.getenv("ADMIN_PASSWORD")));
         admin.setRole(Role.ADMIN);
         admin = userRepository.save(admin);
 
         User user = new User();
         user.setUsername("user");
         user.setEmail("user@glowlog.hr");
-        user.setPassword(passwordEncoder.encode("user123"));
+        user.setPassword(passwordEncoder.encode(System.getenv("USER_PASSWORD")));
         user.setRole(Role.USER);
         userRepository.save(user);
 
-        createProduct("Niacinamide 10% + Zinc 1%", "The Ordinary",
+        createProduct(new ProductRequest("Niacinamide 10% + Zinc 1%", "The Ordinary",
             ProductCategory.SERUM, RoutineSlot.AM_AND_PM, SkinType.COMBINATION,
             ProductStatus.ACTIVE, SkinConcern.OIL_CONTROL,
             "Niacinamide 10%, Zinc PCA 1%, Tamarind Gum",
@@ -65,9 +68,9 @@ public class DataInitializer implements ApplicationRunner {
             "Affordable, effective, oil-balancing daily ritual",
             "No reactions. Skin texture noticeably smoother after 3 weeks.",
             "Cult favorite for a reason. €7 for a holy grail product is wild. Goes under sunscreen perfectly. Repurchased 4 times now.",
-            "Pair with hydrating toner to avoid dryness. Don't combine with Vitamin C in the same routine.", admin);
+            "Pair with hydrating toner to avoid dryness. Don't combine with Vitamin C in the same routine."), admin);
 
-        createProduct("Foaming Facial Cleanser", "CeraVe",
+        createProduct(new ProductRequest("Foaming Facial Cleanser", "CeraVe",
             ProductCategory.CLEANSER, RoutineSlot.AM_AND_PM, SkinType.NORMAL,
             ProductStatus.ACTIVE, SkinConcern.BARRIER_REPAIR,
             "Ceramides, Niacinamide, Hyaluronic Acid",
@@ -79,9 +82,9 @@ public class DataInitializer implements ApplicationRunner {
             "Soft foam, gentle, no squeaky feeling",
             "Sometimes a bit drying in winter. Better with creamy cleanser in cold months.",
             "Reliable workhorse cleanser. Recommended by every dermatologist on TikTok. The big pump bottle lasts months.",
-            "Switch to hydrating cleanser if barrier feels compromised.", admin);
+            "Switch to hydrating cleanser if barrier feels compromised."), admin);
 
-        createProduct("Anthelios UV Mune 400 SPF50+", "La Roche-Posay",
+        createProduct(new ProductRequest("Anthelios UV Mune 400 SPF50+", "La Roche-Posay",
             ProductCategory.SUNSCREEN, RoutineSlot.AM_ONLY, SkinType.ALL_TYPES,
             ProductStatus.ACTIVE, SkinConcern.SUN_PROTECTION,
             "Mexoryl 400, Tinosorb S, Uvinul A Plus",
@@ -93,9 +96,9 @@ public class DataInitializer implements ApplicationRunner {
             "Lightweight, no white cast, glowy finish",
             "Zero breakouts, zero stinging. The gold standard for daily SPF.",
             "Best sunscreen I have ever used. The new Mexoryl 400 filter is genuinely a game-changer. Always in my routine, all year.",
-            "Reapply every 2-3 hours when outdoors. Use a 2-finger length for face + neck.", admin);
+            "Reapply every 2-3 hours when outdoors. Use a 2-finger length for face + neck."), admin);
 
-        createProduct("Snail 96 Mucin Power Essence", "COSRX",
+        createProduct(new ProductRequest("Snail 96 Mucin Power Essence", "COSRX",
             ProductCategory.ESSENCE, RoutineSlot.AM_AND_PM, SkinType.SENSITIVE,
             ProductStatus.ACTIVE, SkinConcern.HYDRATION,
             "Snail Secretion Filtrate 96%, Betaine, Allantoin",
@@ -107,9 +110,9 @@ public class DataInitializer implements ApplicationRunner {
             "Slime-y in the best way, plumping, hydrating",
             "Slight stickiness if you use too much. Two pumps is the sweet spot.",
             "The Korean skincare goat. Mucin gives that glass-skin glow without any irritation. Layers perfectly under serums.",
-            "Tap, don't rub. Wait 30 seconds before next step for full absorption.", admin);
+            "Tap, don't rub. Wait 30 seconds before next step for full absorption."), admin);
 
-        createProduct("TLC Sukari Babyfacial", "Drunk Elephant",
+        createProduct(new ProductRequest("TLC Sukari Babyfacial", "Drunk Elephant",
             ProductCategory.MASK, RoutineSlot.WEEKLY, SkinType.NORMAL,
             ProductStatus.FINISHED, SkinConcern.TEXTURE,
             "AHA 25%, BHA 2%, Niacinamide, Salicylic Acid",
@@ -121,9 +124,9 @@ public class DataInitializer implements ApplicationRunner {
             "Stings on application, glass skin after",
             "Tingles intensely for the full 20 minutes. Worth it. Sensitive types should patch test.",
             "Pricey but actually effective. The morning after, skin looks airbrushed. Used once a week for 6 months.",
-            "Wait at least 24h after using any retinoid. Always SPF the next day. Not for daily use.", admin);
+            "Wait at least 24h after using any retinoid. Always SPF the next day. Not for daily use."), admin);
 
-        createProduct("Watermelon Glow Niacinamide Dew Drops", "Glow Recipe",
+        createProduct(new ProductRequest("Watermelon Glow Niacinamide Dew Drops", "Glow Recipe",
             ProductCategory.SERUM, RoutineSlot.AM_ONLY, SkinType.NORMAL,
             ProductStatus.ABANDONED, SkinConcern.BRIGHTENING,
             "Niacinamide 4%, Watermelon Extract, Hyaluronic Acid",
@@ -135,9 +138,9 @@ public class DataInitializer implements ApplicationRunner {
             "Pretty pink packaging, smells like candy",
             "Caused tiny bumps after 2 weeks. Stopped using. Possibly fragrance reaction.",
             "All packaging, mid results. The fragrance is intense for sensitive types. The Ordinary niacinamide does the same job for one fifth of the price.",
-            "Gifted from a friend. Wouldn't buy myself.", admin);
+            "Gifted from a friend. Wouldn't buy myself."), admin);
 
-        createProduct("Glow Serum Propolis + Niacinamide", "Beauty of Joseon",
+        createProduct(new ProductRequest("Glow Serum Propolis + Niacinamide", "Beauty of Joseon",
             ProductCategory.SERUM, RoutineSlot.AM_AND_PM, SkinType.SENSITIVE,
             ProductStatus.REPURCHASE, SkinConcern.BRIGHTENING,
             "Propolis Extract 60%, Niacinamide 2%",
@@ -149,9 +152,9 @@ public class DataInitializer implements ApplicationRunner {
             "Honey-glow finish, calming, dewy",
             "Zero irritation, zero breakouts, only good things.",
             "Cannot live without this. The propolis calms redness within days. My 3rd bottle and counting. K-beauty supremacy.",
-            "Best applied to slightly damp skin. Layers well with everything.", admin);
+            "Best applied to slightly damp skin. Layers well with everything."), admin);
 
-        createProduct("2% BHA Liquid Exfoliant", "Paula's Choice",
+        createProduct(new ProductRequest("2% BHA Liquid Exfoliant", "Paula's Choice",
             ProductCategory.EXFOLIANT, RoutineSlot.PM_ONLY, SkinType.ACNE_PRONE,
             ProductStatus.ACTIVE, SkinConcern.ACNE,
             "Salicylic Acid 2%, Green Tea Extract, Methylpropanediol",
@@ -163,9 +166,9 @@ public class DataInitializer implements ApplicationRunner {
             "Watery texture, unclogs pores, evens texture",
             "Slight tingle on first use. No purging period for me. Just clear skin.",
             "Has fixed my texture single-handedly. Use every other PM. The bottle lasts almost a year. Worth every euro.",
-            "Start 2x a week, build up tolerance. Don't combine with retinoid same night.", admin);
+            "Start 2x a week, build up tolerance. Don't combine with retinoid same night."), admin);
 
-        createProduct("Good Genes Lactic Acid Treatment", "Sunday Riley",
+        createProduct(new ProductRequest("Good Genes Lactic Acid Treatment", "Sunday Riley",
             ProductCategory.EXFOLIANT, RoutineSlot.PM_ONLY, SkinType.NORMAL,
             ProductStatus.WANT_TO_TRY, SkinConcern.HYPERPIGMENTATION,
             "Lactic Acid 5%, Licorice, Lemongrass",
@@ -176,9 +179,9 @@ public class DataInitializer implements ApplicationRunner {
             "Cult favorite, all over BeautyTok",
             null,
             "Saving up. Reviews say it's worth the splurge for stubborn hyperpigmentation. Will compare to Paula's BHA after I try.",
-            "Wait for a sale or Sephora birthday gift. Never pay full price.", admin);
+            "Wait for a sale or Sephora birthday gift. Never pay full price."), admin);
 
-        createProduct("Lip Sleeping Mask Berry", "Laneige",
+        createProduct(new ProductRequest("Lip Sleeping Mask Berry", "Laneige",
             ProductCategory.LIP_CARE, RoutineSlot.PM_ONLY, SkinType.ALL_TYPES,
             ProductStatus.ACTIVE, SkinConcern.HYDRATION,
             "Hyaluronic Acid, Vitamin C, Murumuru Butter",
@@ -190,50 +193,40 @@ public class DataInitializer implements ApplicationRunner {
             "Berry-scented bedtime ritual, plump lips by morning",
             "Smells incredible without being overwhelming. Cute pink jar lives on my nightstand.",
             "Best lip product ever. Wake up with perfect lips. Lasts 6+ months easily. Beauty influencer favorite for a reason.",
-            "Apply generously before bed. Comes with a tiny spatula in the jar.", admin);
+            "Apply generously before bed. Comes with a tiny spatula in the jar."), admin);
     }
 
-    private void createProduct(
-        String name, String brand,
-        ProductCategory category, RoutineSlot routine, SkinType skinType,
-        ProductStatus status, SkinConcern concern,
-        String ingredients, Integer volume, BigDecimal price, String pao,
-        LocalDate purchased, LocalDate opened, LocalDate expiration, LocalDate finished,
-        Integer emptyCount, Integer rating,
-        Integer effectiveness, Integer texture, Integer scent, Integer value,
-        boolean repurchase, boolean cruelty, boolean fragranceFree, boolean holyGrail,
-        String mood, String reactions, String review, String notes, User addedBy
-    ) {
+    private void createProduct(ProductRequest product, User addedBy) {
         Product p = new Product();
-        p.setName(name);
-        p.setBrand(brand);
-        p.setCategory(category);
-        p.setRoutineSlot(routine);
-        p.setSkinTypeTarget(skinType);
-        p.setStatus(status);
-        p.setPrimaryConcern(concern);
-        p.setKeyIngredients(ingredients);
-        p.setVolumeMl(volume);
-        p.setPriceEur(price);
-        p.setPao(pao);
-        p.setPurchaseDate(purchased);
-        p.setOpenedDate(opened);
-        p.setExpirationDate(expiration);
-        p.setFinishedDate(finished);
-        p.setEmptyCount(emptyCount);
-        p.setRating(rating);
-        p.setEffectivenessScore(effectiveness);
-        p.setTextureScore(texture);
-        p.setScentScore(scent);
-        p.setValueScore(value);
-        p.setWouldRepurchase(repurchase);
-        p.setCrueltyFree(cruelty);
-        p.setFragranceFree(fragranceFree);
-        p.setHolyGrail(holyGrail);
-        p.setMoodTags(mood);
-        p.setReactionNotes(reactions);
-        p.setReview(review);
-        p.setPersonalNotes(notes);
+        p.setName(product.name());
+        p.setBrand(product.brand());
+        p.setCategory(product.category());
+        p.setRoutineSlot(product.routine());
+        p.setSkinTypeTarget(product.skinType());
+        p.setStatus(product.status());
+        p.setPrimaryConcern(product.concern());
+        p.setKeyIngredients(product.ingredients());
+        p.setVolumeMl(product.volume());
+        p.setPriceEur(product.price());
+        p.setPao(product.pao());
+        p.setPurchaseDate(product.purchased());
+        p.setOpenedDate(product.opened());
+        p.setExpirationDate(product.expiration());
+        p.setFinishedDate(product.finished());
+        p.setEmptyCount(product.emptyCount());
+        p.setRating(product.rating());
+        p.setEffectivenessScore(product.effectiveness());
+        p.setTextureScore(product.texture());
+        p.setScentScore(product.scent());
+        p.setValueScore(product.value());
+        p.setWouldRepurchase(product.repurchase());
+        p.setCrueltyFree(product.cruelty());
+        p.setFragranceFree(product.fragranceFree());
+        p.setHolyGrail(product.holyGrail());
+        p.setMoodTags(product.mood());
+        p.setReactionNotes(product.reactions());
+        p.setReview(product.review());
+        p.setPersonalNotes(product.notes());
         p.setAddedBy(addedBy);
         productRepository.save(p);
     }

@@ -1,5 +1,6 @@
 package hr.algebra.glowlog.dto;
 
+import jakarta.validation.constraints.*;
 import hr.algebra.glowlog.entity.Product;
 import hr.algebra.glowlog.enums.ProductCategory;
 import hr.algebra.glowlog.enums.ProductStatus;
@@ -7,7 +8,6 @@ import hr.algebra.glowlog.enums.RoutineSlot;
 import hr.algebra.glowlog.enums.SkinConcern;
 import hr.algebra.glowlog.enums.SkinType;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

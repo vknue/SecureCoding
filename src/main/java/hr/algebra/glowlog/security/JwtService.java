@@ -20,6 +20,10 @@ public class JwtService {
     @Value("${app.jwt.access-expiry-ms}")
     private long accessExpiryMs;
 
+    @Value("${app.jwt.refresh-expiry-ms}")
+    private long refreshExpiryMs;
+
+
     private Algorithm algorithm() {
         return Algorithm.HMAC256(secret);
     }
@@ -38,12 +42,22 @@ public class JwtService {
             .sign(algorithm());
     }
 
+
     public String extractUsername(String token) {
         try {
             return decode(token).getSubject();
-        } catch (JWTVerificationException e) {
+        } catch (JWTVerificationException _) {
             return null;
         }
+    }
+
+    public String generateTokenForTest(String username, Date expirationDate) {
+        return JWT.create()
+                .withSubject(username)
+                .withIssuedAt(new Date())
+                .withExpiresAt(expirationDate)
+                .sign(algorithm());
+
     }
 
     public boolean isValid(String token, UserDetails userDetails) {
@@ -57,7 +71,7 @@ public class JwtService {
         try {
             Date expiresAt = decode(token).getExpiresAt();
             return expiresAt == null || expiresAt.before(new Date());
-        } catch (JWTVerificationException e) {
+        } catch (JWTVerificationException _) {
             return true;
         }
     }

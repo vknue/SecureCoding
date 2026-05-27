@@ -1,5 +1,6 @@
 package hr.algebra.glowlog.controller.rest;
 
+import org.springframework.web.bind.annotation.*;
 import hr.algebra.glowlog.dto.ProductDto;
 import hr.algebra.glowlog.entity.User;
 import hr.algebra.glowlog.enums.ProductCategory;
@@ -14,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -42,7 +42,7 @@ public class ProductRestController {
     public ResponseEntity<ProductDto> getById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(productService.findById(id));
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException _) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -77,20 +77,19 @@ public class ProductRestController {
     ) {
         try {
             return ResponseEntity.ok(productService.update(id, dto));
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException _) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Delete a product (admin only)")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        try {
-            productService.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @Operation(summary = "(admin only)")
+    @PostMapping("/adminEndpoint")
+    public ResponseEntity<Void> adminEndpoint(
+    ) {
+        return ResponseEntity.ok().build();
     }
+
+
+
 }

@@ -15,7 +15,7 @@ public class UrlValidator {
         URI uri = URI.create(urlString);
         String host = uri.getHost();
         if (BLOCKED_HOSTS.contains(host)) {
-            throw new SecurityException("SSRF Attempt Blocked: Access to internal resource denied.");
+            throw new SecurityException("SSRF ALERT");
         }
     }
 }
